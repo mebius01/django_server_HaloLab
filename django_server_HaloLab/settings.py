@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+import django_heroku
 import os
 from decouple import config, Csv
 import dj_database_url
@@ -75,6 +76,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'django_server_HaloLab.urls'
@@ -160,7 +162,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # django-debug-toolbar
 INTERNAL_IPS = ('127.0.0.1',)
@@ -201,3 +210,6 @@ CORS_ALLOW_METHODS = config('CORS_ALLOW_METHODS', cast=Csv())
 
 # FIXTURE
 FIXTURE_DIRS = [os.path.join(BASE_DIR, "fixtures")]
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())

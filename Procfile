@@ -1,0 +1,1 @@
+web: gunicorn django_server_HaloLab.wsgi
