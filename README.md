@@ -6,6 +6,10 @@ apt install redis-server
 ```bash
 redis-cli # ping
 ```
+## За работой Redis можно следить
+```bash
+redis-cli monitor
+```
 # 3. Скачать репозиторий 
 ```bash
 git clone git@github.com:mebius01/django_server_HaloLab.git
@@ -23,7 +27,11 @@ virtualenv -p python3 virtualenv
 ```bash
 pip install -r requirements.txt
 ```
-# 7 Запустить API сервер 
+# 7. Test App
+```bash
+./manage.py test
+```
+# 8. Запустить API сервер 
 ```bash
 ./manage.py runserver
 ```
