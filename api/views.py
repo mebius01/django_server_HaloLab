@@ -8,6 +8,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.conf import settings
 
+
 class LargeResultsSetPagination(PageNumberPagination):
     page_size = 24
     page_size_query_param = 'page_size'

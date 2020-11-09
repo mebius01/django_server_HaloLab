@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API</title>
+</head>
+<body>
+    <div style="margin: 50px auto;">
+        <ul style="list-style: none;">
+            <li style="margin: 20px"><a style="text-decoration: none; color: brown;" href="{% url 'api:category_list' %}">Category List</a></li>
+            <li style="margin: 20px"><a style="text-decoration: none; color: brown;" href="{% url 'api:product_list' %}">Product List</a></li>
+            <hr>
+            <li style="margin: 20px"><a style="text-decoration: none; color: brown;" href="{% url 'api:product_detail' 'mysh-provodnaia-a4-tech-f7-v-track-usb-3000dpi-black-f7' %}">Product Detail..</a></li>
+            <li style="margin: 20px"><a style="text-decoration: none; color: brown;" href="{% url 'api:category_detail' 'colorway' %}">Category Detail..</a></li>
+            <li style="margin: 20px"><a style="text-decoration: none; color: brown;" href="{% url 'api:category_detail' 'kartridzhi-lazernye-cw' %}">Category Detail.. Detail..</a></li>
+        </ul>
+    </div>
+</body>
+</html>
