@@ -1,3 +1,7 @@
+# 0. Зависимости
+ * Python >= 3.6
+ * OS (Debian, Ubuntu)
+
 # 1. Установить сервер Redis
 ```bash
 apt install redis-server
