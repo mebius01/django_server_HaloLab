@@ -114,13 +114,9 @@ WSGI_APPLICATION = 'django_server_HaloLab.wsgi.application'
 #         'OPTIONS': {'sslmode': 'require'},
 #     }
 # }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR , 'db.sqlite3'),
-#     }
-# }
+
 DATABASES = {'default': dj_database_url.config(default=config("DATABASE_URL"))}
+# For fake database
 import sys
 if 'test' in sys.argv or 'test_coverage' in sys.argv:
     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'

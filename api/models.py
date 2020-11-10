@@ -24,7 +24,7 @@ class Category(MPTTModel):
 
 
 class Product(models.Model):
-    category    = models.ForeignKey(Category,related_name='product', on_delete=models.CASCADE, help_text='Каталог товара (расходные материалы, компьютеры и комплетующие и т д)') #коталог продукта связь m2m
+    category    = models.ForeignKey(Category,related_name='product', on_delete=models.CASCADE, help_text='Каталог товара')
     name        = models.CharField(max_length=400, db_index=True, help_text='Название товара')
     slug        = models.SlugField(max_length=400, help_text='')
     vendor_code = models.CharField(max_length=200, unique=True, help_text='Артикул, парт номер')

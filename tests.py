@@ -4,9 +4,13 @@ from rest_framework.test import APITestCase
 from api.models import Category, Product
 
 class CategoryTests(APITestCase):
-
-    print('Create data for DB')
     def setUp(self):
+        """
+        Создает фейковую БД и заполняет ее данные, в тестах работает только с этой БД
+        В этом конкрет реализации прав у юзера БД, на создания БД, нет!
+        По этому в settings описано ...DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'...
+        Это позволяет на момент тестов юзать sqlite
+        """
         Category.objects.create(id          = 1,
                                 name        = 'Name Category',
                                 slug        = 'name_category',
@@ -32,15 +36,22 @@ class CategoryTests(APITestCase):
                                 stock       = 1,
                                 available   = True,
         )
+
+    print('Create data for DB')
     
     def test_get_data_category(self):
+        # Запрос по урлу
         response = self.client.get(reverse('api:category_list'))
+        # Тест падает если ответ не 200
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        # Тест падает если объектов чуть больше чем 1
+        # По факту у нас две категории, но вторая категория есть потомком первой
         self.assertEqual(len(response.data), 1)
     
     def test_get_data_category_detail(self):
         response = self.client.get(reverse('api:category_detail', args=('name_category',)))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        # Тест падает если полей чуть больше чем 7
         self.assertEqual(len(response.data), 7)
 
     def test_get_data_product(self):
